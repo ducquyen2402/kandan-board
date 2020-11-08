@@ -1,0 +1,68 @@
+<header class="title-kanban">KANBAN BOARD</header>
+<section class="body-kanban" cdkDropListGroup>
+  <mat-card class="task-block">
+    <div class="title-block">
+      <h1 class="title">TODO (3)</h1>
+      <mat-icon class="icon" aria-hidden="false" aria-label="Delete Task">delete_outline</mat-icon>
+    </div>
+    <!-- <mat-list role="list" class="task-list">
+      <mat-list-item role="listitem" class="task">Item 1</mat-list-item>
+      <mat-list-item role="listitem" class="task">Item 2</mat-list-item>
+      <mat-list-item role="listitem" class="task">Item 3</mat-list-item>
+    </mat-list> -->
+    <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
+    </div>
+    <div class="bottom-block">
+      <mat-form-field class="example-full-width">
+        <mat-label>Task name</mat-label>
+        <input matInput placeholder="Task name">
+      </mat-form-field>
+      <button class="btn-add" mat-raised-button color="primary">Add</button>
+    </div>
+  </mat-card>
+
+  <mat-card class="task-block">
+    <div class="title-block">
+      <h1 class="title">DOING (1)</h1>
+      <mat-icon class="icon" aria-hidden="false" aria-label="Delete Task">delete_outline</mat-icon>
+    </div>
+    <div cdkDropList [cdkDropListData]="doing" class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of doing" cdkDrag>{{ item }}</div>
+    </div>
+    <div class="bottom-block">
+      <mat-form-field class="example-full-width">
+        <mat-label>Task name</mat-label>
+        <input matInput placeholder="Task name">
+      </mat-form-field>
+      <button class="btn-add" mat-raised-button color="primary">Add</button>
+    </div>
+  </mat-card>
+
+  <mat-card class="task-block">
+    <div class="title-block">
+      <h1 class="title">DONE (2)</h1>
+      <mat-icon class="icon" aria-hidden="false" aria-label="Delete Task">delete_outline</mat-icon>
+    </div>
+    <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of done" cdkDrag>{{ item }}</div>
+    </div>
+    <div class="bottom-block">
+      <mat-form-field class="example-full-width">
+        <mat-label>Task name</mat-label>
+        <input matInput placeholder="Task name">
+      </mat-form-field>
+      <button class="btn-add" mat-raised-button color="primary">Add</button>
+    </div>
+  </mat-card>
+
+  <div>
+    <div class="bottom-block">
+      <mat-form-field class="example-full-width">
+        <mat-label>Task name</mat-label>
+        <input matInput placeholder="Task name">
+      </mat-form-field>
+      <button class="btn-add" mat-raised-button color="primary">Add</button>
+    </div>
+  </div>
+</section>
