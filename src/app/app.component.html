@@ -1,68 +1,46 @@
 <header class="title-kanban">KANBAN BOARD</header>
 <section class="body-kanban" cdkDropListGroup>
-  <mat-card class="task-block">
+  <mat-card class="task-block" *ngFor="let taskBlock of taskList; let i = index">
     <div class="title-block">
-      <h1 class="title">TODO ({{todo.length}})</h1>
-      <mat-icon class="icon" aria-hidden="false" aria-label="Delete Task">delete_outline</mat-icon>
+      <h1 class="title">TODO ({{ taskBlock.tasks?.length }})</h1>
+      <mat-icon
+        class="icon"
+        aria-hidden="false"
+        aria-label="Delete Task"
+        (click)="removeTaskBlock(i)"
+        >delete_outline</mat-icon
+      >
     </div>
-    <div 
-        cdkDropList 
-        [cdkDropListData]="todo" 
-        class="kb-task-list" 
-        (cdkDropListDropped)="drop($event)"
-        #todo="cdkDropList"
-        [cdkDropListConnectedTo]="[doing]"
-        >
-      <div class="kb-task-box" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
+    <div
+      cdkDropList
+      [cdkDropListData]="taskBlock.tasks"
+      class="kb-task-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="kb-task-box" *ngFor="let task of taskBlock.tasks" cdkDrag>
+        {{ task }}
+      </div>
     </div>
     <div class="bottom-block">
       <mat-form-field class="example-full-width">
         <mat-label>Task name</mat-label>
-        <input matInput placeholder="Task name">
+        <input matInput placeholder="Task name" #inputTaskName />
       </mat-form-field>
-      <button class="btn-add" mat-raised-button color="primary">Add</button>
+      <button
+        class="btn-add"
+        mat-raised-button
+        color="primary"
+        (click)="addTask(inputTaskName, i)"
+      >
+        Add
+      </button>
     </div>
   </mat-card>
-
-  <mat-card class="task-block">
-    <div class="title-block">
-      <h1 class="title">DOING ({{doing.length}})</h1>
-      <mat-icon class="icon" aria-hidden="false" aria-label="Delete Task">delete_outline</mat-icon>
-    </div>
-    <div cdkDropList [cdkDropListData]="doing" class="kb-task-list" (cdkDropListDropped)="drop($event)">
-      <div class="kb-task-box" *ngFor="let item of doing" cdkDrag>{{ item }}</div>
-    </div>
-    <div class="bottom-block">
-      <mat-form-field class="example-full-width">
-        <mat-label>Task name</mat-label>
-        <input matInput placeholder="Task name">
-      </mat-form-field>
-      <button class="btn-add" mat-raised-button color="primary">Add</button>
-    </div>
-  </mat-card>
-
-  <mat-card class="task-block">
-    <div class="title-block">
-      <h1 class="title">DONE ({{done.length}})</h1>
-      <mat-icon class="icon" aria-hidden="false" aria-label="Delete Task">delete_outline</mat-icon>
-    </div>
-    <div cdkDropList [cdkDropListData]="done" class="kb-task-list" (cdkDropListDropped)="drop($event)">
-      <div class="kb-task-box" *ngFor="let item of done" cdkDrag>{{ item }}</div>
-    </div>
-    <div class="bottom-block">
-      <mat-form-field class="example-full-width">
-        <mat-label>Task name</mat-label>
-        <input matInput placeholder="Task name">
-      </mat-form-field>
-      <button class="btn-add" mat-raised-button color="primary">Add</button>
-    </div>
-  </mat-card>
-
   <div>
     <div class="bottom-block">
       <mat-form-field class="example-full-width">
         <mat-label>Task name</mat-label>
-        <input matInput placeholder="Task name">
+        <input matInput placeholder="Task name" />
       </mat-form-field>
       <button class="btn-add" mat-raised-button color="primary">Add</button>
     </div>

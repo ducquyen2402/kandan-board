@@ -1,39 +1,44 @@
 .title-kanban {
-    padding: 1%;
-    background: #2367cc;
-    text-align: center;
-    color: white;
-    font-weight: 500;
-    font-size: medium;
+  padding: 1%;
+  background: #2367cc;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  font-size: medium;
 }
 
 .body-kanban {
-    display: flex;
-    flex-direction: row;
-    margin-right: 1%;
+  display: flex;
+  flex-direction: row;
+  margin-right: 1%;
+}
+
+.block-group {
+  display: flex;
+  flex-direction: row;
 }
 
 .task-block {
-    width: 25%;
-    margin: 1%;
-    display: flex;
-    flex-direction: row;
-    height: max-content;
+  width: 25%;
+  margin: 1%;
+  display: flex;
+  flex-direction: row;
+  height: max-content;
 }
 
 .title-block {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.title-block .title{
-    font-weight: 500;
+.title-block .title {
+  font-weight: 500;
 }
 
-.title-block .icon{
-    color: #ef350b;
-    cursor: pointer;
+.title-block .icon {
+  color: #ef350b;
+  cursor: pointer;
 }
 
 /* .task-list .task {
@@ -42,20 +47,20 @@
     border-left: 1px solid lightgray;
 } */
 
-.task-list .task:last-child{
-    border-bottom: 1px solid lightgray;
+.task-list .task:last-child {
+  border-bottom: 1px solid lightgray;
 }
 
 .bottom-block {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 2%;
 }
 
-.bottom-block .btn-add{
-    height: 35px;
+.bottom-block .btn-add {
+  height: 35px;
 }
 
 .kb-task-list {
@@ -85,8 +90,7 @@
   box-sizing: border-box;
   border-radius: 4px;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-              0 8px 10px 1px rgba(0, 0, 0, 0.14),
-              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .cdk-drag-placeholder {
