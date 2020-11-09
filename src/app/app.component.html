@@ -2,16 +2,18 @@
 <section class="body-kanban" cdkDropListGroup>
   <mat-card class="task-block">
     <div class="title-block">
-      <h1 class="title">TODO (3)</h1>
+      <h1 class="title">TODO ({{todo.length}})</h1>
       <mat-icon class="icon" aria-hidden="false" aria-label="Delete Task">delete_outline</mat-icon>
     </div>
-    <!-- <mat-list role="list" class="task-list">
-      <mat-list-item role="listitem" class="task">Item 1</mat-list-item>
-      <mat-list-item role="listitem" class="task">Item 2</mat-list-item>
-      <mat-list-item role="listitem" class="task">Item 3</mat-list-item>
-    </mat-list> -->
-    <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
+    <div 
+        cdkDropList 
+        [cdkDropListData]="todo" 
+        class="kb-task-list" 
+        (cdkDropListDropped)="drop($event)"
+        #todo="cdkDropList"
+        [cdkDropListConnectedTo]="[doing]"
+        >
+      <div class="kb-task-box" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
     </div>
     <div class="bottom-block">
       <mat-form-field class="example-full-width">
@@ -24,11 +26,11 @@
 
   <mat-card class="task-block">
     <div class="title-block">
-      <h1 class="title">DOING (1)</h1>
+      <h1 class="title">DOING ({{doing.length}})</h1>
       <mat-icon class="icon" aria-hidden="false" aria-label="Delete Task">delete_outline</mat-icon>
     </div>
-    <div cdkDropList [cdkDropListData]="doing" class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of doing" cdkDrag>{{ item }}</div>
+    <div cdkDropList [cdkDropListData]="doing" class="kb-task-list" (cdkDropListDropped)="drop($event)">
+      <div class="kb-task-box" *ngFor="let item of doing" cdkDrag>{{ item }}</div>
     </div>
     <div class="bottom-block">
       <mat-form-field class="example-full-width">
@@ -41,11 +43,11 @@
 
   <mat-card class="task-block">
     <div class="title-block">
-      <h1 class="title">DONE (2)</h1>
+      <h1 class="title">DONE ({{done.length}})</h1>
       <mat-icon class="icon" aria-hidden="false" aria-label="Delete Task">delete_outline</mat-icon>
     </div>
-    <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of done" cdkDrag>{{ item }}</div>
+    <div cdkDropList [cdkDropListData]="done" class="kb-task-list" (cdkDropListDropped)="drop($event)">
+      <div class="kb-task-box" *ngFor="let item of done" cdkDrag>{{ item }}</div>
     </div>
     <div class="bottom-block">
       <mat-form-field class="example-full-width">
