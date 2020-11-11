@@ -72,6 +72,11 @@
   display: block;
 }
 
+.kb-task-box .icon {
+  color: #ef350b;
+  cursor: pointer;
+}
+
 .kb-task-box {
   padding: 20px 10px;
   border-bottom: solid 1px #ccc;

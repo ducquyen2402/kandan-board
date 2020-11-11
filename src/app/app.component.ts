@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Task } from './task.model';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent{
+export class AppComponent implements OnInit{
   taskList: Task[] = 
   [
     {
@@ -23,6 +26,13 @@ export class AppComponent{
     }
   ];
 
+  constructor(public dialog: MatDialog) {}
+
+  ngOnInit(){
+    if (localStorage.getItem('TASKLIST')) {
+      this.taskList = JSON.parse(localStorage.getItem('TASKLIST'));
+    }
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -39,12 +49,41 @@ export class AppComponent{
     if (input.value !== '') {
       this.taskList[index].tasks.push(input.value);
       input.value = '';
+      localStorage.setItem('TASKLIST', JSON.stringify(this.taskList));
     } else {
       alert ("Task name is required");
     }
   }
 
-  removeTaskBlock(index: number) {
-    this.taskList.splice(index, 1);
+  addTaskBlock(input: HTMLInputElement){
+    if (input.value !== '') {
+      this.taskList.push(new Task(input.value, []));
+      input.value = '';
+      localStorage.setItem('TASKLIST', JSON.stringify(this.taskList));
+    } else {
+      alert ("Block name is required");
+    }
   }
+
+  removeTaskBlock(index: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.taskList.splice(index, 1);
+      }
+      localStorage.setItem('TASKLIST', JSON.stringify(this.taskList));
+    });
+  }
+
+  removeTask(i: number, j: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.taskList[i].tasks.splice(j, 1);
+      }
+      localStorage.setItem('TASKLIST', JSON.stringify(this.taskList));
+    });
+  }  
+
 }
